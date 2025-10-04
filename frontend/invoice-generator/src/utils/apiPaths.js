@@ -1,4 +1,7 @@
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : "https://ai-invoice-generator-seven.vercel.app";
 
 export const API_PATHS = {
   AUTH: {
