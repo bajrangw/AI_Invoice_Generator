@@ -2,6 +2,10 @@
 
 An AI-powered invoice management system that helps you generate, parse, and manage invoices efficiently. Built with React, Node.js, Express, and MongoDB, it integrates AI to extract invoice data from text/PDFs and provides smart insights for financial tracking.
 
+## Live Demo
+Check out the app here: [https://ai-invoice-generator-3nts.vercel.app/](https://ai-invoice-generator-3nts.vercel.app/)
+
+
 ✨ **Features**
 
 🔐 Authentication & User Profiles – Secure user registration, login, and profile management.
