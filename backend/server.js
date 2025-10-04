@@ -4,19 +4,19 @@ const cors = require("cors");
 const path = require("path");
 const connectDB = require("./config/db");
 
-const authRoutes = require('./routes/authRoutes')
-const invoiceRoutes = require('./routes/invoiceRoutes')
-const aiRoutes = require('./routes/aiRoutes')
+const authRoutes = require("./routes/authRoutes");
+const invoiceRoutes = require("./routes/invoiceRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
 // Middleware to handle CORS
 app.use(
-    cors({
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
 
 // Connect Database
@@ -25,12 +25,14 @@ connectDB();
 // Middleware
 app.use(express.json());
 
-// Routes Here
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/ai", aiRoutes);
 
+// Optional root route
+app.get("/", (req, res) => {
+  res.send("🚀 AI Invoice Generator API is running (Serverless)");
+});
 
-// Start Server 
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;
