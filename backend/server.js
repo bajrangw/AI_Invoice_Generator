@@ -10,10 +10,9 @@ const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
-// Allowed origins
 const allowedOrigins = [
   "https://ai-invoice-generator-3nts.vercel.app",
-  "http://localhost:5173" // for local testing
+  "http://localhost:5173" 
 ];
 
 // Middleware to handle CORS + preflight
