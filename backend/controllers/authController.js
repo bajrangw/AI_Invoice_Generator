@@ -87,7 +87,7 @@ exports.getMe = async (req, res) => {
             phone: user.phone || "",
         });
     } catch (error) {
-        res.status(500).json({ messag: "Server error" });
+        res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -95,30 +95,30 @@ exports.getMe = async (req, res) => {
 // @route       PUT /api/auth/me
 // @access      Private
 exports.updateUserProfile = async (req, res) => {
-    try {
+  try {
+    const user = await User.findById(req.user.id);
 
-        const user = await User.findById(req.user.id);
-
-        if(user) {
-            user.name = req.body.name || user.name;
-            user.businessName = req.body.businessName || user.businessName;
-            user.address = req.body.address || user.address;
-            user.phone = req.body.phone || user.phone;
-
-            const updatedUser = await user.save();
-
-            res.json({
-                _id: updatedUser._id,
-                name: updatedUser.name,
-                email: updatedUser.email,
-                businessName: updatedUser.businessName,
-                address: updatedUser.address,
-                phone: updatedUser.phone, 
-            });
-        } else {
-            res.status(404).json({ message: "User not found" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Server error" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
+
+    user.name = req.body.name || user.name;
+    user.businessName = req.body.businessName || user.businessName;
+    user.address = req.body.address || user.address;
+    user.phone = req.body.phone || user.phone;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      businessName: updatedUser.businessName,
+      address: updatedUser.address,
+      phone: updatedUser.phone,
+    });
+  } catch (error) {
+    console.error("Update profile error:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
