@@ -17,7 +17,7 @@ const InvoiceDetail = () => {
   const [invoice, setInvoice] = useState(null);
   const [loading, setLoading ] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [isReminderModelOpen, setIsReminderModalOpen] = useState(false);
+  const [isReminderModalOpen, setIsReminderModalOpen] = useState(false);
   const invoiceRef = useRef();
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const InvoiceDetail = () => {
 
   return (
     <>
-    <ReminderModal isOpen={isReminderModelOpen} onClose={() => setIsReminderModalOpen(false)} invoiceId={id} />
+    <ReminderModal isOpen={isReminderModalOpen} onClose={() => setIsReminderModalOpen(false)} invoiceId={id} />
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 print:hidden">
         <h1 className="text-2xl font-semibold text-slate-900 mb-4 sm:mb-0">
           Invoice <span className="font-mono text-slate-500">{invoice.invoiceNumber}</span>
