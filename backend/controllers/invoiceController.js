@@ -82,7 +82,7 @@ exports.getInvoiceById = async (req, res) => {
             return res.status(401).json({ message: "Not authorized" });
         }
         
-        res.json(Invoice);
+        res.json(invoice);
 
     } catch (error) {
         res
